@@ -27,16 +27,20 @@ var FavView = React.createClass({
 })
 
 var ListingsContainer = React.createClass({
+	_checkForListings: function() {
+		console.log(this.props.collection.length)
+		if(this.props.collection.length < 1) return <h2>No Favorites Found</h2>
+	},
 	_makeListings: function(mod) {
+		console.log("HELLO",mod)
 		if(mod) {
 			return <Listing model={mod} key={mod.cid} />
-		} else {
-			return <h2>No Listings Found</h2>
 		}
 	},
 	render: function() {
 		return (
 			<div className="listings-container">
+				{this._checkForListings()}
 				{this.props.collection.map(this._makeListings)}
 			</div>
 		)
@@ -45,15 +49,15 @@ var ListingsContainer = React.createClass({
 
 var Listing = React.createClass({
 	_getListingImage: function(model) {
-		if(model.get("MainImage").url_170x135) {
+		console.log(model)
+		if(model.get("MainImage").hasOwnProperty("url_170x135")) {
 			return model.get("MainImage").url_170x135
 		} else {
 			return "../../imgs/defaultPic.jpg"
 		}
 	},
 	_handleFavoriteClick: function() {
-		ACTIONS.toggleFavorite(this.props.model.cid)
-		ACTIONS.addFavorite(this.props.model)
+		ACTIONS.deleteFavorite(this.props.model)
 	},
 	render: function() {
 		var materialIconStyle = this.props.model.get('favorite') === true ? "favorite" : "favorite_border"

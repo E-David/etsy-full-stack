@@ -63,8 +63,8 @@ var Listing = React.createClass({
 				<a href={"#details/" + model.get("listing_id")}>
 					<img src={this._getListingImage(model)} />
 				</a>
-				<p className="favorite material-icons" onClick={this._handleFavoriteClick}>{materialIconStyle}</p>
 				<div className="listing-details">
+					<p className="favorite material-icons" onClick={this._handleFavoriteClick}>{materialIconStyle}</p>
 					<p>{model.get("title").slice(0,25) + "..."}</p>
 					<div className="details">
 						<span>{model.get("Shop").shop_name}</span>

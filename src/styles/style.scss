@@ -1,4 +1,4 @@
-@import "../../node_modules/material-design-icons";
+/*@import "../../node_modules/material-design-icons"; */
 
 * {
 	box-sizing: border-box;
@@ -14,12 +14,6 @@
 
 header *{
 	background-color: white;
-}
-
-h2 {
-	font-size: 36px;
-	text-align: center;
-	color: black;
 }
 
 header {
@@ -65,7 +59,7 @@ header {
 	}
 
 	.search-button:active {
-		background-color: darken(#3CB1CB,10)
+		background-color: darken(#3CB1CB,10);
 	}
 }
 
@@ -82,16 +76,8 @@ a, a:link, a:hover, a:visited {
 	.listing {
 		margin: 5px auto;
 		width: 25%;
-		position: relative;
-
 		img {
 			max-width: 100%;
-		}
-		.material-icons {
-			font-size: 36px;
-			position: absolute;
-			top: 0;
-			right: 0;
 		}
 
 		.listing-details {
@@ -109,7 +95,12 @@ a, a:link, a:hover, a:visited {
 				text-align: center;
 				margin-left: 5px;
 			}
-
+			.favorite {
+				font-size: 36px;
+				margin: 0;
+				padding: 0;
+				background-color: white;
+			}
 			.details {
 				width: 100%;
 				background-color: white;
@@ -190,5 +181,21 @@ a, a:link, a:hover, a:visited {
 				font-size: 18px;
 			}
 		}
+		.favorite {
+			margin: 0;
+			padding: 0;
+		}
 	}
+}
+
+.fav-view .listings-container {
+	display: block;
+	text-align: center;
+		h2 {
+		font-size: 36px;
+		text-align: center;
+		margin: auto;
+		font-family: Helvetica;
+		color: #F56400;
+		}
 }

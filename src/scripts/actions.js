@@ -10,25 +10,43 @@ const ACTIONS = {
 				.done(()=>console.log("save complete",STORE._get("favCollection")))
 				.fail(()=>console.log("save failed"))
 	},
+	deleteFavorite: function(model) {
+		model.destroy()
+			.done(()=>alert(model.get('listing_id') + ' successfully deleted'))
+			.fail(()=>alert(model.get('listing_id') + " failed to delete"))
+		STORE._emitChange()
+	},
+
 	fetchFavorites: function() {
-		var f = new FavCollection()
-		console.log("BEFORE FETCH",f)
+		var favColl = new FavCollection()
 		// we need to tell this collection to fetch data
-		f.fetch().then(
+		favColl.fetch().then(
 			function(){
-				console.log("AFTER FETCH SUCCESS",f)
 				STORE._set({
-					favCollection: f
+					favCollection: favColl
 				})
 			},
 			function(err) {
-				console.log("AFTER FETCH FAIL",f)
 				alert('problem retrieving fave data')
 				console.log(err)
 			}
 		)
-		// once the data is loaded, we will set a new faveCollection property on our store,
-		// which will trigger a full reflow of the view
+	},
+	fetchListingDetails: function(listingId) {
+		var model = new EtsyModel
+		model["_listingId"] = listingId
+		model.fetch({
+			dataType: 'jsonp',
+			data: {
+			   	"api_key": model._apiKey,
+			    "includes": "MainImage,Shop"
+		    }
+		}).then(function(){
+			console.log(model)
+			STORE._set({
+				etsyModel: model
+			})
+		})
 	},
 	fetchListings: function(query) {
 		var coll = STORE._get('etsyCollection')
@@ -57,6 +75,12 @@ const ACTIONS = {
 			favorite: mod.get("favorite") ? false : true
 		})
 		STORE._set("etsyCollection", coll)
+	},
+	toggleFavModel: function(mod) {
+		mod.set({
+			favorite: mod.get("favorite") ? false : true
+		})
+		STORE._set("etsyModel", mod)
 	}
 
 }

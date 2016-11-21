@@ -19,13 +19,13 @@ export const EtsyModel = Backbone.Model.extend({
 	}
 })
 
+export const FavModel = Backbone.Model.extend({
+	urlRoot: "/api/favorites",
+	idAttribute: '_id'
+})
+
 export const FavCollection = Backbone.Collection.extend({
 	url: "/api/favorites",
 	model: FavModel
 })
 
-export const FavModel = Backbone.Model.extend({
-	urlRoot: "/api/favorites",
-	idAttributes: "_id",
-	favorite: true
-})

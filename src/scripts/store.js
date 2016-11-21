@@ -1,11 +1,12 @@
 import Backbone from "backbone"
 import _ from "underscore"
-import {EtsyCollection,FavCollection} from "./models/dataModels"
+import {EtsyCollection,FavCollection,EtsyModel} from "./models/dataModels"
 
 const STORE = _.extend(Backbone.Events,{
 	_data: {
 		etsyCollection: new EtsyCollection(),
-		favCollection: new FavCollection()
+		favCollection: new FavCollection(),
+		etsyModel: new EtsyModel()
 	},
 	_emitChange: function() {
 		this.trigger("storeChanged")

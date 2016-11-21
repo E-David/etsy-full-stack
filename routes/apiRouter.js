@@ -45,6 +45,7 @@ let Fav = require('../db/schema.js').Fav
         })
       })  
     })
+
   apiRouter
     // Routes for a Model(resource) should have this structure
     // Create one
@@ -53,8 +54,8 @@ let Fav = require('../db/schema.js').Fav
       record.save(function(err, record){
         if (err) {
           res.status(500).send(err)
-        }
-        else {
+        } else {
+          console.log(record)
           res.json(record)
         }
       })
@@ -62,14 +63,23 @@ let Fav = require('../db/schema.js').Fav
 
     // Read many
     .get('/favorites', function(req,res) {
-      console.log('got a fave request')
-      console.log('here comes request',req.query, req.body)
       Fav.find(req.query,function(err,records) {
         if (err) {
           res.status(500).send(err)
-        }
-        else {
+        } else {
           res.json(records)
+        }
+      })
+    })
+
+    .delete("/favorites/:_id", function(req,res){
+      Fav.remove({_id: req.params._id}, (err) => {
+        if (err) {
+          return res.json(err)
+        } else {
+          res.json({
+            status: `record with id: ${req.params._id} successfully deleted`
+          })
         }
       })
     })

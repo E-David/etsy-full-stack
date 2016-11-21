@@ -20,27 +20,14 @@ var app = function() {
 		handleSearch: function(query) {
 			ReactDOM.render(<ListView query={query} />, document.querySelector(".container"))
 		},
-		// handleDetails: function(_listingId){
-		// 	var etsyModel = new EtsyModel()
-		// 	etsyModel._listingId = _listingId
-
-		// 	// showGif()
-		// 	etsyModel.fetch({
-		// 	    dataType: 'jsonp',
-		// 	    data: {
-		// 	    	"api_key": etsyModel._apiKey,
-		// 	    	"includes": "MainImage,Shop"
-		// 	    }
-		//     }).then(function(){
-		//     	ReactDOM.render(<DetailView model={etsyModel} />, document.querySelector(".container"))
-		// 	})
-		// },
+		handleDetails: function(_listingId){
+		    ReactDOM.render(<DetailView listingId={_listingId} />, document.querySelector(".container"))
+		},
 		handleFavorites: function() {
 			ReactDOM.render(<FavView />, document.querySelector(".container"))
 		},
 		redirect: function() {
 			location.hash = "home"
-			// showGif()
 		},
 		initialize: function(){
 			Backbone.history.start()

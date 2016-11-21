@@ -27,7 +27,10 @@ const favSchema = new mongoose.Schema({
   url:              String,
   views:            Number,
   num_favorers:     Number,
-  who_made:         String
+  who_made:         String,
+  MainImage:        Object,
+  Shop:             Object
+
 }, { strict: false })
 
 module.exports = {

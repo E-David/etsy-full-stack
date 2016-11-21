@@ -28,6 +28,7 @@ var Header = React.createClass({
 					className="search-button" 
 					type="button"
 					onClick={this._handleSearchClick}
+					value="Search"
 				/>
 				<a href="#favorites">My Favorites</a>
 
